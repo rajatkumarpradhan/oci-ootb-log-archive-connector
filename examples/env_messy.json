@@ -1,0 +1,16 @@
+{
+  "connector": {
+    "id": "sch-1",
+    "name": "audit-logs-to-archive",
+    "state": "DISABLED",
+    "source": {"kind": "logging", "log_group_id": "lg-audit"},
+    "target": {"kind": "objectstorage", "bucket": "log-archive",
+               "batch_rollover_mb": 250, "batch_rollover_ms": 4200000}
+  },
+  "bucket": {"name": "log-archive", "lifecycle_rules": []},
+  "log_group": {"id": "lg-audit", "name": "audit", "retention_days": 30},
+  "alarms": [
+    {"id": "alarm-1", "name": "cpu-high", "metric_namespace": "oci_computeagent",
+     "enabled": true}
+  ]
+}
